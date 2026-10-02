@@ -22,11 +22,26 @@
         </div>
 
         <div class="detail">
-          <div class="media" [class.empty]="!project.images.length">
-            @if (project.images.length) {
-              <img [src]="project.images[0]" [alt]="project.name" loading="lazy" />
-            } @else {
-              <span>{{ i18n.t({ es: 'Capturas próximamente', en: 'Screenshots coming soon' }) }}</span>
+          <div class="gallery">
+            <div class="media" [class.empty]="!project.images.length">
+              @if (project.images.length) {
+                @for (src of project.images; track src; let k = $index) {
+                  <img [src]="src" [alt]="project.name + ' — ' + (k + 1)" loading="lazy"
+                       [class.on]="current(project.id) === k" />
+                }
+              } @else {
+                <span>{{ i18n.t({ es: 'Capturas próximamente', en: 'Screenshots coming soon' }) }}</span>
+              }
+            </div>
+            @if (project.images.length > 1) {
+              <div class="thumbs">
+                @for (src of project.images; track src; let k = $index) {
+                  <button type="button" (click)="show(project.id, k)" [class.on]="current(project.id) === k"
+                          [attr.aria-label]="i18n.t({ es: 'Ver captura', en: 'Show screenshot' }) + ' ' + (k + 1)">
+                    <img [src]="src" alt="" loading="lazy" />
+                  </button>
+                }
+              </div>
             }
           </div>
 
@@ -48,6 +63,17 @@
             }
           </div>
         </div>
+
+        @if (project.mobile?.length) {
+          <div class="phones">
+            @for (shot of project.mobile; track shot.src; let k = $index) {
+              <figure [appReveal]="k * 120">
+                <div class="device"><img [src]="shot.src" [alt]="i18n.t(shot.caption)" loading="lazy" /></div>
+                <figcaption>{{ i18n.t(shot.caption) }}</figcaption>
+              </figure>
+            }
+          </div>
+        }
       </article>
     }
   </div>

@@ -15,8 +15,10 @@ export interface Project {
   highlights: Txt[];
   stack: string[];
   links: Link[];
-  /** Screenshots under public/projects/<id>/. Empty shows a styled placeholder. */
+  /** Desktop screenshots under public/projects/<id>/. Empty shows a placeholder. */
   images: string[];
+  /** Phone screenshots, shown as a row of devices under the project. */
+  mobile?: { src: string; caption: Txt }[];
 }
 
 export interface ClientWork {
@@ -99,7 +101,11 @@ export const PROJECTS: Project[] = [
     ],
     stack: ['NestJS', 'MongoDB', 'Angular', 'React Native', 'AWS Lambda', 'Terraform', 'WebSockets'],
     links: [{ label: { es: 'Ver sitio', en: 'Visit site' }, url: 'https://cancha-ya.com' }],
-    images: ['projects/canchaya/calendario.png'],
+    images: [
+      'projects/canchaya/canchas.webp',
+      'projects/canchaya/reserva.webp',
+      'projects/canchaya/calendario-dark.webp',
+    ],
   },
   {
     id: 'dotra',
@@ -130,7 +136,12 @@ export const PROJECTS: Project[] = [
     ],
     stack: ['NestJS', 'PostgreSQL', 'Angular', 'React Native', 'Google OAuth'],
     links: [{ label: { es: 'Ver sitio', en: 'Visit site' }, url: 'https://www.dotra.online' }],
-    images: [],
+    images: ['projects/dotra/pedidos.webp', 'projects/dotra/menu-web.webp'],
+    mobile: [
+      { src: 'projects/dotra/app-login.webp', caption: { es: 'App de clientes · acceso', en: 'Customer app · sign in' } },
+      { src: 'projects/dotra/app-confirmar.webp', caption: { es: 'App de clientes · pedido', en: 'Customer app · checkout' } },
+      { src: 'projects/dotra/app-menu.webp', caption: { es: 'App de restaurantes · menú', en: 'Restaurant app · menu' } },
+    ],
   },
   {
     id: 'turnogo',
