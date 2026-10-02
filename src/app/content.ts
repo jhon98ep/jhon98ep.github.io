@@ -57,7 +57,7 @@ export const PROFILE = {
   email: 'estradajhon07@gmail.com',
   linkedin: 'https://www.linkedin.com/in/jhon-jader-estrada-pizarro-dev',
   github: 'https://github.com/jhon98ep',
-  cv: 'cv-jhon-estrada.pdf',
+  cv: { es: 'cv-jhon-estrada.pdf', en: 'resume-jhon-estrada.pdf' } as Txt,
 };
 
 export const FACTS: { value: string; label: Txt }[] = [

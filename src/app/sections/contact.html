@@ -13,7 +13,7 @@
     <ul class="links" appReveal="400">
       <li><a class="link" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a></li>
       <li><a class="link" [href]="profile.github" target="_blank" rel="noopener">GitHub ↗</a></li>
-      <li><a class="link" [href]="profile.cv" download>{{ i18n.t({ es: 'Descargar CV', en: 'Download résumé' }) }} ↓</a></li>
+      <li><a class="link" [href]="i18n.t(profile.cv)" download>{{ i18n.t({ es: 'Descargar CV', en: 'Download résumé' }) }} ↓</a></li>
     </ul>
   </div>
 </section>

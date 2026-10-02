@@ -17,7 +17,7 @@
         <span class="sep">/</span>
         <span [class.on]="i18n.lang() === 'en'">EN</span>
       </button>
-      <a class="cv link" [href]="profile.cv" download>{{ i18n.t({ es: 'CV', en: 'Résumé' }) }} ↓</a>
+      <a class="cv link" [href]="i18n.t(profile.cv)" download>{{ i18n.t({ es: 'CV', en: 'Résumé' }) }} ↓</a>
       <button class="burger" type="button" (click)="menuOpen.set(!menuOpen())"
               [class.x]="menuOpen()" [attr.aria-expanded]="menuOpen()" aria-label="Menú">
         <span></span><span></span>
