@@ -1,51 +1,45 @@
 <section id="inicio" class="hero">
-  <div class="glow" aria-hidden="true"></div>
-  <div class="container grid">
-    <div class="copy">
-      <p class="badge">
-        <span class="dot"></span>
-        {{ i18n.t({ es: 'Disponible para nuevos proyectos', en: 'Open to new roles' }) }}
-      </p>
-      <p class="role">{{ i18n.t(profile.role) }}</p>
-      <h1>{{ i18n.t(profile.headline) }}</h1>
-      <p class="intro">{{ i18n.t(profile.intro) }}</p>
-      <div class="ctas">
-        <a class="btn primary" href="#proyectos">{{ i18n.t({ es: 'Ver proyectos', en: 'See projects' }) }} →</a>
-        <a class="btn ghost" href="#contacto">{{ i18n.t({ es: 'Contactarme', en: 'Get in touch' }) }}</a>
-      </div>
-      <p class="location">📍 {{ i18n.t(profile.location) }}</p>
-    </div>
-
-    <div class="code card" aria-hidden="true">
-      <div class="code-top">
-        <span></span><span></span><span></span>
-        <em>bookings.controller.ts</em>
-      </div>
-<pre><code><span class="k">&#64;Controller</span>(<span class="s">'bookings'</span>)
-<span class="k">export class</span> <span class="t">BookingsController</span> {{ '{' }}
-  <span class="k">constructor</span>(
-    <span class="k">private</span> bookings: <span class="t">BookingsService</span>,
-    <span class="k">private</span> gateway: <span class="t">BookingsGateway</span>,
-  ) {{ '{' }}{{ '}' }}
-
-  <span class="k">&#64;Post</span>()
-  <span class="k">async</span> <span class="f">create</span>(<span class="k">&#64;Body</span>() dto: <span class="t">CreateBookingDto</span>) {{ '{' }}
-    <span class="k">const</span> booking = <span class="k">await</span> <span class="k">this</span>.bookings.<span class="f">reserve</span>(dto);
-    <span class="k">this</span>.gateway.<span class="f">emit</span>(<span class="s">'booking.created'</span>, booking);
-    <span class="k">return</span> booking;
-  {{ '}' }}
-{{ '}' }}</code></pre>
-    </div>
-  </div>
-
   <div class="container">
-    <ul class="facts">
-      @for (fact of facts; track fact.value) {
-        <li>
-          <strong>{{ fact.value }}</strong>
-          <span>{{ i18n.t(fact.label) }}</span>
-        </li>
+    <div class="top">
+      <p class="eyebrow">{{ i18n.t(profile.role) }}</p>
+      <p class="clock">
+        <span class="pulse" aria-hidden="true"></span>
+        {{ i18n.t({ es: 'Cali, Colombia', en: 'Cali, Colombia' }) }} · {{ localTime() }}
+      </p>
+    </div>
+
+    <h1 [attr.aria-label]="i18n.t(profile.headline)">
+      @for (word of words(); track $index + word) {
+        <span class="w" aria-hidden="true"><span [style.animation-delay.ms]="120 + $index * 70">{{ word }}</span></span>{{ ' ' }}
       }
-    </ul>
+    </h1>
+
+    <div class="grid">
+      <p class="intro" appReveal="500">{{ i18n.t(profile.intro) }}</p>
+
+      <div class="side" appReveal="650">
+        <p class="status">
+          <strong>{{ i18n.t({ es: 'Disponible', en: 'Available' }) }}</strong>
+          {{ i18n.t({ es: 'para roles Backend o Full Stack, remoto o híbrido.', en: 'for Backend or Full Stack roles, remote or hybrid.' }) }}
+        </p>
+        <div class="ctas">
+          <a class="btn solid" href="#proyectos">
+            {{ i18n.t({ es: 'Ver proyectos', en: 'See projects' }) }} <span class="arrow">→</span>
+          </a>
+          <a class="btn line" [href]="'mailto:' + profile.email">
+            {{ i18n.t({ es: 'Escríbeme', en: 'Email me' }) }}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <dl class="facts">
+      @for (fact of facts; track fact.value; let i = $index) {
+        <div [appReveal]="700 + i * 90">
+          <dt>{{ fact.value }}</dt>
+          <dd>{{ i18n.t(fact.label) }}</dd>
+        </div>
+      }
+    </dl>
   </div>
 </section>

@@ -1,45 +1,67 @@
-.box {
-  padding: 56px 40px;
-  text-align: center;
-  background:
-    radial-gradient(500px 220px at 50% 0%, rgba(37, 99, 235, 0.22), transparent 70%),
-    var(--surface);
+.contact {
+  background: var(--ink);
+  color: var(--bg);
+  border-top: 0;
+  padding: 128px 0 112px;
+}
+
+.num {
+  font-family: var(--mono);
+  font-size: 13px;
+  opacity: 0.6;
+  margin: 0 0 24px;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(64px, 13vw, 180px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0 0 32px;
 }
 
 .lead {
-  color: var(--text-soft);
-  max-width: 560px;
-  margin: 0 auto 32px;
+  max-width: 520px;
+  font-size: 19px;
+  opacity: 0.75;
+  margin: 0 0 40px;
 }
 
-.ctas {
+.mail {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(24px, 4vw, 44px);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+  transition: color 0.25s;
+  word-break: break-all;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 56px 0 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  gap: 32px;
+  font-size: 16px;
 }
 
 footer {
-  border-top: 1px solid var(--border);
   padding: 24px 0;
-  color: var(--text-faint);
-  font-size: 14px;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 12px;
 
   .container {
     display: flex;
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 640px) {
-  .box {
-    padding: 40px 20px;
-  }
-
-  .ctas .btn {
-    width: 100%;
-    justify-content: center;
   }
 }

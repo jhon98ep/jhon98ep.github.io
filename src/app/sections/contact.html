@@ -1,29 +1,26 @@
-<section id="contacto">
+<section id="contacto" class="contact">
   <div class="container">
-    <div class="box card">
-      <p class="section-kicker">{{ i18n.t({ es: 'Contacto', en: 'Contact' }) }}</p>
-      <h2 class="section-title">
-        {{ i18n.t({ es: '¿Buscas un desarrollador backend?', en: 'Looking for a backend developer?' }) }}
-      </h2>
-      <p class="lead">
-        {{ i18n.t({
-          es: 'Estoy abierto a roles Backend o Full Stack, remotos o híbridos. Respondo en menos de 24 horas.',
-          en: 'Open to Backend or Full Stack roles, remote or hybrid. I reply within 24 hours.'
-        }) }}
-      </p>
-      <div class="ctas">
-        <a class="btn primary" [href]="'mailto:' + profile.email">✉️ {{ profile.email }}</a>
-        <a class="btn ghost" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="btn ghost" [href]="profile.github" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn ghost" [href]="profile.cv" download>{{ i18n.t({ es: 'Descargar CV', en: 'Download CV' }) }}</a>
-      </div>
-    </div>
+    <p class="num" appReveal>05 — {{ i18n.t({ es: 'Contacto', en: 'Contact' }) }}</p>
+    <h2 appReveal="100">{{ i18n.t({ es: 'Hablemos.', en: "Let's talk." }) }}</h2>
+    <p class="lead" appReveal="200">
+      {{ i18n.t({
+        es: '¿Tu equipo necesita a alguien que diseñe y construya el backend? Respondo en menos de 24 horas.',
+        en: 'Does your team need someone to design and build the backend? I reply within 24 hours.'
+      }) }}
+    </p>
+    <a class="mail" [href]="'mailto:' + profile.email" appReveal="300">{{ profile.email }}</a>
+
+    <ul class="links" appReveal="400">
+      <li><a class="link" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+      <li><a class="link" [href]="profile.github" target="_blank" rel="noopener">GitHub ↗</a></li>
+      <li><a class="link" [href]="profile.cv" download>{{ i18n.t({ es: 'Descargar CV', en: 'Download résumé' }) }} ↓</a></li>
+    </ul>
   </div>
 </section>
 
 <footer>
   <div class="container">
     <span>© {{ year }} {{ profile.name }}</span>
-    <span>{{ i18n.t({ es: 'Hecho con Angular', en: 'Built with Angular' }) }}</span>
+    <span>{{ i18n.t({ es: 'Diseñado y desarrollado con Angular', en: 'Designed and built with Angular' }) }}</span>
   </div>
 </footer>

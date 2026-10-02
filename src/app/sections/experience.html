@@ -1,42 +1,52 @@
 <section id="experiencia">
   <div class="container">
-    <p class="section-kicker">{{ i18n.t({ es: 'Experiencia', en: 'Experience' }) }}</p>
-    <h2 class="section-title">{{ i18n.t({ es: 'Dónde he trabajado', en: "Where I've worked" }) }}</h2>
+    <header class="section-head" appReveal>
+      <span class="num">03 — {{ i18n.t({ es: 'Experiencia', en: 'Experience' }) }}</span>
+      <div>
+        <h2>{{ i18n.t({ es: 'Dónde he trabajado', en: "Where I've worked" }) }}</h2>
+      </div>
+    </header>
 
-    <ol class="timeline">
+    <ol class="jobs">
       @for (job of jobs; track $index) {
-        <li>
-          <div class="when">{{ i18n.t(job.period) }}</div>
-          <div class="what">
-            <h3>{{ i18n.t(job.role) }}</h3>
-            <p class="where">{{ i18n.t(job.company) }} · {{ i18n.t(job.place) }}</p>
-            <ul>
-              @for (item of job.highlights; track $index) {
-                <li>{{ i18n.t(item) }}</li>
-              }
-            </ul>
+        <li appReveal>
+          <span class="when">{{ i18n.t(job.period) }}</span>
+          <div class="who">
+            <h3>{{ i18n.t(job.company) }}</h3>
+            <p>{{ i18n.t(job.role) }}</p>
+            <p class="place">{{ i18n.t(job.place) }}</p>
           </div>
+          <ul>
+            @for (item of job.highlights; track $index) {
+              <li>{{ i18n.t(item) }}</li>
+            }
+          </ul>
         </li>
       }
     </ol>
   </div>
 </section>
 
-<section id="stack" class="stack">
+<section id="stack">
   <div class="container">
-    <p class="section-kicker">Stack</p>
-    <h2 class="section-title">{{ i18n.t({ es: 'Herramientas que uso a diario', en: 'Tools I use every day' }) }}</h2>
-    <div class="groups">
+    <header class="section-head" appReveal>
+      <span class="num">04 — Stack</span>
+      <div>
+        <h2>{{ i18n.t({ es: 'Con qué trabajo', en: 'What I work with' }) }}</h2>
+      </div>
+    </header>
+
+    <dl class="skills">
       @for (group of skills; track $index) {
-        <div class="group card">
-          <h3>{{ i18n.t(group.title) }}</h3>
-          <div class="chips">
-            @for (item of group.items; track item) {
-              <span class="chip">{{ item }}</span>
+        <div appReveal>
+          <dt>{{ i18n.t(group.title) }}</dt>
+          <dd>
+            @for (item of group.items; track item; let last = $last) {
+              <span>{{ item }}</span>@if (!last) {<span class="sep">,</span>}
             }
-          </div>
+          </dd>
         </div>
       }
-    </div>
+    </dl>
   </div>
 </section>

@@ -1,54 +1,54 @@
 <section id="proyectos">
   <div class="container">
-    <p class="section-kicker">{{ i18n.t({ es: 'Proyectos', en: 'Projects' }) }}</p>
-    <h2 class="section-title">{{ i18n.t({ es: 'Productos que he construido', en: "Products I've built" }) }}</h2>
-    <p class="section-lead">
-      {{ i18n.t({
-        es: 'Plataformas reales, de la arquitectura al despliegue. El código de los productos comerciales es privado; con gusto lo recorro en una entrevista.',
-        en: 'Real platforms, from architecture to deployment. Commercial code is private; happy to walk through it in an interview.'
-      }) }}
-    </p>
+    <header class="section-head" appReveal>
+      <span class="num">01 — {{ i18n.t({ es: 'Proyectos', en: 'Projects' }) }}</span>
+      <div>
+        <h2>{{ i18n.t({ es: 'Productos que he construido', en: "Products I've built" }) }}</h2>
+        <p>
+          {{ i18n.t({
+            es: 'Plataformas reales, de la arquitectura al despliegue. El código de los productos comerciales es privado; con gusto lo recorro en una entrevista.',
+            en: 'Real platforms, from architecture to deployment. Commercial code is private; happy to walk through it in an interview.'
+          }) }}
+        </p>
+      </div>
+    </header>
 
-    <div class="list">
-      @for (project of projects; track project.id; let odd = $odd) {
-        <article class="project card" [class.flip]="odd">
-          <div class="media" [attr.data-id]="project.id">
+    @for (project of projects; track project.id; let i = $index) {
+      <article class="project" appReveal>
+        <div class="row">
+          <span class="idx">{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <h3>{{ project.name }}</h3>
+          <span class="status" [class.live]="project.live">{{ i18n.t(project.status) }}</span>
+        </div>
+
+        <div class="detail">
+          <div class="media" [class.empty]="!project.images.length">
             @if (project.images.length) {
               <img [src]="project.images[0]" [alt]="project.name" loading="lazy" />
             } @else {
-              <div class="placeholder">
-                <span>{{ project.name }}</span>
-              </div>
+              <span>{{ i18n.t({ es: 'Capturas próximamente', en: 'Screenshots coming soon' }) }}</span>
             }
           </div>
 
           <div class="body">
-            <div class="head">
-              <h3>{{ project.name }}</h3>
-              <span class="status" [class.live]="project.live">{{ i18n.t(project.status) }}</span>
-            </div>
             <p class="summary">{{ i18n.t(project.summary) }}</p>
-            <p class="role"><strong>{{ i18n.t({ es: 'Mi rol', en: 'My role' }) }}:</strong> {{ i18n.t(project.role) }}</p>
+            <p class="role"><span>{{ i18n.t({ es: 'Rol', en: 'Role' }) }}</span>{{ i18n.t(project.role) }}</p>
             <ul>
               @for (item of project.highlights; track $index) {
                 <li>{{ i18n.t(item) }}</li>
               }
             </ul>
-            <div class="chips">
-              @for (tech of project.stack; track tech) {
-                <span class="chip">{{ tech }}</span>
-              }
-            </div>
+            <p class="tags">{{ project.stack.join(' / ') }}</p>
             @if (project.links.length) {
-              <div class="links">
+              <p class="links">
                 @for (link of project.links; track link.url) {
-                  <a [href]="link.url" target="_blank" rel="noopener">{{ i18n.t(link.label) }} ↗</a>
+                  <a class="link" [href]="link.url" target="_blank" rel="noopener">{{ i18n.t(link.label) }} ↗</a>
                 }
-              </div>
+              </p>
             }
           </div>
-        </article>
-      }
-    </div>
+        </div>
+      </article>
+    }
   </div>
 </section>
