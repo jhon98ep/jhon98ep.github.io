@@ -1,0 +1,45 @@
+.box {
+  padding: 56px 40px;
+  text-align: center;
+  background:
+    radial-gradient(500px 220px at 50% 0%, rgba(37, 99, 235, 0.22), transparent 70%),
+    var(--surface);
+}
+
+.lead {
+  color: var(--text-soft);
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  color: var(--text-faint);
+  font-size: 14px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .box {
+    padding: 40px 20px;
+  }
+
+  .ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

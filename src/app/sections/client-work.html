@@ -1,0 +1,31 @@
+<section id="clientes" class="alt">
+  <div class="container">
+    <p class="section-kicker">{{ i18n.t({ es: 'Trabajo para clientes', en: 'Client work' }) }}</p>
+    <h2 class="section-title">{{ i18n.t({ es: 'Resultados para empresas', en: 'Results for companies' }) }}</h2>
+    <p class="section-lead">
+      {{ i18n.t({
+        es: 'Proyectos bajo acuerdo de confidencialidad: muestro el problema, mi solución y el resultado, sin nombres de clientes ni código.',
+        en: 'Projects under NDA: I show the problem, my solution and the outcome, without client names or code.'
+      }) }}
+    </p>
+
+    <div class="grid">
+      @for (item of items; track $index) {
+        <article class="card">
+          <div class="top">
+            <span class="sector">{{ i18n.t(item.sector) }}</span>
+            <span class="nda">🔒 NDA</span>
+          </div>
+          <h3>{{ i18n.t(item.title) }}</h3>
+          <p>{{ i18n.t(item.description) }}</p>
+          <p class="result">{{ i18n.t(item.result) }}</p>
+          <div class="chips">
+            @for (tech of item.stack; track tech) {
+              <span class="chip">{{ tech }}</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<header [class.scrolled]="scrolled()">
+  <div class="container bar">
+    <a class="logo" href="#inicio" aria-label="Inicio">
+      <span class="mark">JE</span>
+      <span class="name">{{ profile.name }}</span>
+    </a>
+
+    <nav [class.open]="menuOpen()" aria-label="Principal">
+      @for (item of nav; track item.id) {
+        <a [href]="'#' + item.id" (click)="menuOpen.set(false)">{{ i18n.t(item.label) }}</a>
+      }
+    </nav>
+
+    <div class="actions">
+      <button class="lang" type="button" (click)="i18n.toggle()"
+              [attr.aria-label]="i18n.lang() === 'es' ? 'Switch to English' : 'Cambiar a español'">
+        <span [class.on]="i18n.lang() === 'es'">ES</span>
+        <span [class.on]="i18n.lang() === 'en'">EN</span>
+      </button>
+      <a class="btn primary cv" [href]="profile.cv" download>
+        {{ i18n.t({ es: 'Descargar CV', en: 'Download CV' }) }}
+      </a>
+      <button class="burger" type="button" (click)="menuOpen.set(!menuOpen())"
+              [attr.aria-expanded]="menuOpen()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

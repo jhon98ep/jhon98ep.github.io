@@ -1,0 +1,51 @@
+<section id="inicio" class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="container grid">
+    <div class="copy">
+      <p class="badge">
+        <span class="dot"></span>
+        {{ i18n.t({ es: 'Disponible para nuevos proyectos', en: 'Open to new roles' }) }}
+      </p>
+      <p class="role">{{ i18n.t(profile.role) }}</p>
+      <h1>{{ i18n.t(profile.headline) }}</h1>
+      <p class="intro">{{ i18n.t(profile.intro) }}</p>
+      <div class="ctas">
+        <a class="btn primary" href="#proyectos">{{ i18n.t({ es: 'Ver proyectos', en: 'See projects' }) }} →</a>
+        <a class="btn ghost" href="#contacto">{{ i18n.t({ es: 'Contactarme', en: 'Get in touch' }) }}</a>
+      </div>
+      <p class="location">📍 {{ i18n.t(profile.location) }}</p>
+    </div>
+
+    <div class="code card" aria-hidden="true">
+      <div class="code-top">
+        <span></span><span></span><span></span>
+        <em>bookings.controller.ts</em>
+      </div>
+<pre><code><span class="k">&#64;Controller</span>(<span class="s">'bookings'</span>)
+<span class="k">export class</span> <span class="t">BookingsController</span> {{ '{' }}
+  <span class="k">constructor</span>(
+    <span class="k">private</span> bookings: <span class="t">BookingsService</span>,
+    <span class="k">private</span> gateway: <span class="t">BookingsGateway</span>,
+  ) {{ '{' }}{{ '}' }}
+
+  <span class="k">&#64;Post</span>()
+  <span class="k">async</span> <span class="f">create</span>(<span class="k">&#64;Body</span>() dto: <span class="t">CreateBookingDto</span>) {{ '{' }}
+    <span class="k">const</span> booking = <span class="k">await</span> <span class="k">this</span>.bookings.<span class="f">reserve</span>(dto);
+    <span class="k">this</span>.gateway.<span class="f">emit</span>(<span class="s">'booking.created'</span>, booking);
+    <span class="k">return</span> booking;
+  {{ '}' }}
+{{ '}' }}</code></pre>
+    </div>
+  </div>
+
+  <div class="container">
+    <ul class="facts">
+      @for (fact of facts; track fact.value) {
+        <li>
+          <strong>{{ fact.value }}</strong>
+          <span>{{ i18n.t(fact.label) }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

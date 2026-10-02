@@ -1,0 +1,54 @@
+<section id="proyectos">
+  <div class="container">
+    <p class="section-kicker">{{ i18n.t({ es: 'Proyectos', en: 'Projects' }) }}</p>
+    <h2 class="section-title">{{ i18n.t({ es: 'Productos que he construido', en: "Products I've built" }) }}</h2>
+    <p class="section-lead">
+      {{ i18n.t({
+        es: 'Plataformas reales, de la arquitectura al despliegue. El código de los productos comerciales es privado; con gusto lo recorro en una entrevista.',
+        en: 'Real platforms, from architecture to deployment. Commercial code is private; happy to walk through it in an interview.'
+      }) }}
+    </p>
+
+    <div class="list">
+      @for (project of projects; track project.id; let odd = $odd) {
+        <article class="project card" [class.flip]="odd">
+          <div class="media" [attr.data-id]="project.id">
+            @if (project.images.length) {
+              <img [src]="project.images[0]" [alt]="project.name" loading="lazy" />
+            } @else {
+              <div class="placeholder">
+                <span>{{ project.name }}</span>
+              </div>
+            }
+          </div>
+
+          <div class="body">
+            <div class="head">
+              <h3>{{ project.name }}</h3>
+              <span class="status" [class.live]="project.live">{{ i18n.t(project.status) }}</span>
+            </div>
+            <p class="summary">{{ i18n.t(project.summary) }}</p>
+            <p class="role"><strong>{{ i18n.t({ es: 'Mi rol', en: 'My role' }) }}:</strong> {{ i18n.t(project.role) }}</p>
+            <ul>
+              @for (item of project.highlights; track $index) {
+                <li>{{ i18n.t(item) }}</li>
+              }
+            </ul>
+            <div class="chips">
+              @for (tech of project.stack; track tech) {
+                <span class="chip">{{ tech }}</span>
+              }
+            </div>
+            @if (project.links.length) {
+              <div class="links">
+                @for (link of project.links; track link.url) {
+                  <a [href]="link.url" target="_blank" rel="noopener">{{ i18n.t(link.label) }} ↗</a>
+                }
+              </div>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
